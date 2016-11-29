@@ -78,8 +78,45 @@ class CamFlow
   end
 end
 
-file_name = ARGV[0]
+def help
+  print "-[l/j] filename -[i/s/p/d]\n"
+  print "l: log file\n"
+  print "j: json file\n"
+  print "i: information\n"
+  print "s: svg file\n"
+  print "p: png file\n"
+  print "d: generate .dot file and call dotty\n"
+end
 
 cf = CamFlow.new
-cf.read_log_file file_name
-print cf.information
+
+case ARGV[0]
+when '-h'
+  help
+  exit
+when '-l'
+  print "Reading log file...\n"
+  file_name = ARGV[1]
+  cf.read_log_file file_name
+when '-j'
+  print "Reading JSON file...\n"
+  file_name = ARGV[1]
+  cf.read_json_file file_name
+else
+  print "here\n"
+  help
+  exit
+end
+
+case ARGV[2]
+when '-i'
+  print cf.information
+when '-s'
+  cf.dg.write_to_graphic_file('svg')
+when '-p'
+  cf.dg.write_to_graphic_file('png')
+when '-d'
+  cf.dg.dotty
+else
+  help
+end
