@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'rgl/adjacency'
 require 'rgl/dot'
 require 'rgl/topsort'
