@@ -9,8 +9,22 @@ class CamFlow
 
   def initialize filename = nil
     @dg = RGL::DirectedAdjacencyGraph.new
+    self.read_json_file filename
+  end
+
+  def read_json_file filename
     if filename != nil
       self.parse_json File.read(filename) unless !File.file?(filename)
+      print "File does not exist\n" unless File.file?(filename)
+    end
+  end
+
+  def read_log_file filename
+    if filename != nil
+      File.readlines(filename).each do |line|
+        line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
+        self.parse_json line
+      end unless !File.file?(filename)
       print "File does not exist\n" unless File.file?(filename)
     end
   end
@@ -66,8 +80,6 @@ end
 
 file_name = ARGV[0]
 
-cf = CamFlow.new(ARGV[0])
+cf = CamFlow.new
+cf.read_log_file file_name
 print cf.information
-cf.apply_transitive_reduction
-print cf.information
-cf.dg.write_to_graphic_file('jpg')
