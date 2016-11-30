@@ -83,6 +83,7 @@ class CamFlow
 
     str += @dg.num_edges.to_s() +" edges.\n"
     str += @dg.num_vertices.to_s() +" vertices.\n"
+    str += (@dg.num_edges.to_f/@dg.num_vertices).to_s() + " edges/vertices ratio.\n"
   end
 
   def apply_transitive_reduction
