@@ -32,7 +32,15 @@ class CamFlow
   end
 
   def parse_json string
-    json = JSON.parse(string)
+    begin
+      json = JSON.parse(string)
+    rescue JSON::ParserError
+      print "Parsing failed...\n"
+      print string
+      print "\n"
+    ensure
+      return
+    end
 
     json['used'].each do |k, v|
       dg.add_edge v['prov:activity'], v['prov:entity']
