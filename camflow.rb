@@ -22,10 +22,13 @@ class CamFlow
   end
 
   def read_log_file filename
+    i = 1
     if filename != nil
-      File.readlines(filename).each do |line|
-        line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
-        self.parse_json line
+      open(filename) do |file|
+        file.each_line do |line|
+          line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
+          self.parse_json line
+        end
       end unless !File.file?(filename)
       print "File does not exist\n" unless File.file?(filename)
     end
@@ -38,30 +41,29 @@ class CamFlow
       print "Parsing failed...\n"
       print string
       print "\n"
-    ensure
       return
     end
 
     json['used'].each do |k, v|
-      dg.add_edge v['prov:activity'], v['prov:entity']
+      @dg.add_edge v['prov:activity'], v['prov:entity']
     end unless !json.key? 'used'
 
 
     json['wasGeneratedBy'].each do |k, v|
-      dg.add_edge v['prov:entity'], v['prov:activity']
+      @dg.add_edge v['prov:entity'], v['prov:activity']
     end unless !json.key? 'wasGeneratedBy'
 
     json['wasDerivedFrom'].each do |k, v|
-      dg.add_edge v['prov:generatedEntity'], v['prov:usedEntity']
+      @dg.add_edge v['prov:generatedEntity'], v['prov:usedEntity']
     end unless !json.key? 'wasDerivedFrom'
 
     json['wasInformedBy'].each do |k, v|
-      dg.add_edge v['prov:informed'], v['prov:informant']
+      @dg.add_edge v['prov:informed'], v['prov:informant']
     end unless !json.key? 'wasInformedBy'
 
     json['wasAssociatedWith'].each do |k, v|
-      dg.add_edge v['prov:activity'], v['prov:agent']
-      dg.add_edge v['prov:agent'], v['prov:plan'] unless !v.key? 'prov:plan'
+      @dg.add_edge v['prov:activity'], v['prov:agent']
+      @dg.add_edge v['prov:agent'], v['prov:plan'] unless !v.key? 'prov:plan'
     end unless !json.key? 'wasAssociatedWith'
   end
 
