@@ -5,4 +5,4 @@ require 'rgl/dot'
 require 'rgl/topsort'
 require 'rgl/transitivity'
 
-CamFlow::ProvJSONtoRGL.new.read_log_file('./json/merge.json').jpg
+print CamFlow::ProvJSONtoRGL.new.read_json_file('./json/more.json').information
