@@ -38,6 +38,9 @@ module CamFlow
     def wasAssociatedWith k, v
     end
 
+    def prefix k, v
+    end
+
     def entity k, v
     end
 
@@ -56,6 +59,10 @@ module CamFlow
         print "\n"
         return
       end
+
+      json['prefix'].each do |k, v|
+        self.prefix k, v
+      end unless !json.key? 'prefix'
 
       json['entity'].each do |k, v|
         self.entity k, v
