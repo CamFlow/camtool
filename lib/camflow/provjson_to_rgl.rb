@@ -50,5 +50,17 @@ module CamFlow
       str += @dg.num_vertices.to_s() +" vertices.\n"
       str += (@dg.num_edges.to_f/@dg.num_vertices).to_s() + " edges/vertices ratio.\n"
     end
+
+    def svg
+      @dg.write_to_graphic_file('svg')
+    end
+
+    def jpg
+      @dg.write_to_graphic_file('jpg')
+    end
+
+    def png
+      @dg.write_to_graphic_file('png')
+    end
   end
 end
