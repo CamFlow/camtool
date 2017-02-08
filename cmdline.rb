@@ -6,4 +6,4 @@ require 'rgl/topsort'
 require 'rgl/transitivity'
 
 print CamFlow::ProvJSONtoRGL.new.read_json_file('./json/more.json').information
-CamFlow::LogBreaker.new.break_log_file('/tmp/audit.log')
+CamFlow::MQTTBreaker.new.break_log_file('/tmp/audit.log')
