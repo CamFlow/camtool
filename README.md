@@ -3,6 +3,7 @@
 ```
 gem install json
 gem install rgl
+gem install mqtt
 ```
 
 ```
