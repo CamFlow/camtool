@@ -1,4 +1,4 @@
-module CamFlow
+module CamTool
   class VertexCounter < ProvJSONParser
     attr_reader :map
 

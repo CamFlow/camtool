@@ -1,6 +1,6 @@
 require 'json'
 
-module CamFlow
+module CamTool
   class ProvJSONParser
     def read_json_file filename
       if filename != nil

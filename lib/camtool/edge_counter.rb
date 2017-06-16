@@ -1,4 +1,4 @@
-module CamFlow
+module CamTool
   class EdgeCounter < ProvJSONParser
     attr_reader :map
 

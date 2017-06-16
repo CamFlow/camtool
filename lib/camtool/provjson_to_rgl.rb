@@ -3,7 +3,7 @@ require 'rgl/dot'
 require 'rgl/topsort'
 require 'rgl/transitivity'
 
-module CamFlow
+module CamTool
   class ProvJSONtoRGL < ProvJSONParser
     attr_reader :dg
 

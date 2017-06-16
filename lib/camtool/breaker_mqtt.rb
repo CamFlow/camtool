@@ -2,7 +2,7 @@ require 'mqtt'
 require 'zlib'
 require 'base64'
 
-module CamFlow
+module CamTool
   class MQTTBreaker < LogBreaker
     def initialize
       conn_opts = {

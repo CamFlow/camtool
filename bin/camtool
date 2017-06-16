@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative 'camtool.rb'
+require 'rgl/dot'
+require 'rgl/topsort'
+require 'rgl/transitivity'
+
+target = ARGV[0]
+puts target
+
+print CamTool::ProvJSONtoRGL.new.read_log_file(target).information
+CamTool::EdgeCounter.new.read_log_file(target).show
+CamTool::VertexCounter.new.read_log_file(target).show

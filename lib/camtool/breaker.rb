@@ -1,4 +1,4 @@
-module CamFlow
+module CamTool
   class LogBreaker
     def break_log_file filename
       if filename != nil
