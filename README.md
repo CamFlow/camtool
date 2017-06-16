@@ -1,9 +1,9 @@
 # camflow-ruby
 
 ```
-gem install json rgl mqtt
+sudo dnf install ruby ruby-devel redhat-rpm-config graphviz
 ```
 
 ```
-sudo dnf install ruby ruby-devel redhat-rpm-config graphviz
+gem install json rgl mqtt
 ```
