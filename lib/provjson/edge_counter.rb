@@ -31,7 +31,7 @@ module CamFlow
     end
 
     def show
-      puts "Edge types"
+      puts "\n\n-------------\nEdge types\n-------------\n"
       @map = @map.sort_by { |key, value| value }.reverse
       @map.each do |key, value|
         puts "#{key}:#{value}"

@@ -53,9 +53,6 @@ module CamFlow
       begin
         json = JSON.parse(string)
       rescue JSON::ParserError
-        print "Parsing failed...\n"
-        print string
-        print "\n"
         return
       end
 
