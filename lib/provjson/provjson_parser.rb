@@ -14,7 +14,6 @@ module CamFlow
       if filename != nil
         open(filename) do |file|
           file.each_line do |line|
-            line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
             parse_json line
           end
         end unless !File.file?(filename)
