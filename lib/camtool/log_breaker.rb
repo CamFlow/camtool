@@ -7,11 +7,11 @@ module CamTool
           file.each_line do |line|
             ok = true
             line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
+            line = line.gsub "\n", ''
             begin
               JSON.parse(line)
             rescue JSON::ParserError
-              print line
-              ok = false
+              abort "Error #{ex.class}, message: #{ex.message}"
             end
             self.new_entry line unless !ok
           end

@@ -4,7 +4,7 @@ module CamTool
   class ProvJSONParser
     def read_json_file filename
       if filename != nil
-        parse_json File.read(filename) unless !File.file?(filename)
+        parse_json File.read(filename).gsub("\n", '') unless !File.file?(filename)
         print "File does not exist\n" unless File.file?(filename)
       end
       self
@@ -14,7 +14,7 @@ module CamTool
       if filename != nil
         open(filename) do |file|
           file.each_line do |line|
-            parse_json line
+            parse_json line.gsub("\n", '')
           end
         end unless !File.file?(filename)
         print "File does not exist\n" unless File.file?(filename)
@@ -52,8 +52,8 @@ module CamTool
     def parse_json string
       begin
         json = JSON.parse(string)
-      rescue JSON::ParserError
-        return
+      rescue JSON::ParserError => ex
+        abort "Error #{ex.class}, message: #{ex.message}"
       end
 
       json['prefix'].each do |k, v|
