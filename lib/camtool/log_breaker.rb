@@ -4,7 +4,6 @@ module CamTool
       if filename != nil
         open(filename) do |file|
           @i=0
-          Dir.mkdir './break'
           file.each_line do |line|
             ok = true
             line = line.sub /\[[0-9 :-]*\]\t[A-Z]*[ ]*:[ ]*/, ''
@@ -23,7 +22,7 @@ module CamTool
     end
 
     def new_entry entry
-      fname="./break/#{@i}.break"
+      fname="./#{@i}.break"
       @i=@i+1
       File.open(fname, 'w+') do |f|
         f.write entry
