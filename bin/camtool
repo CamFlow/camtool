@@ -1,13 +1,24 @@
 #!/usr/bin/env ruby
 
-require_relative 'camtool.rb'
+require 'camtool.rb'
 require 'rgl/dot'
 require 'rgl/topsort'
 require 'rgl/transitivity'
 
-target = ARGV[0]
+instruction = ARGV[0]
+target = ARGV[1]
 puts target
 
-print CamTool::ProvJSONtoRGL.new.read_log_file(target).information
-CamTool::EdgeCounter.new.read_log_file(target).show
-CamTool::VertexCounter.new.read_log_file(target).show
+if instruction == '--info'
+  print CamTool::ProvJSONtoRGL.new.read_log_file(target).information
+  CamTool::EdgeCounter.new.read_log_file(target).show
+  CamTool::VertexCounter.new.read_log_file(target).show
+elsif instruction == '--publish'
+  CamTool::MQTTBreaker.new.break_log_file target
+elsif instruction == '--break'
+  CamTool::LogBreaker.new.break_log_file target
+else
+  puts '--info'
+  puts '--publish'
+  puts '--break'
+end
