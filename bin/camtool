@@ -17,6 +17,8 @@ elsif instruction == '--publish'
   CamTool::MQTTBreaker.new.break_log_file target
 elsif instruction == '--break'
   CamTool::LogBreaker.new.break_log_file target
+elsif instruction == '--validate'
+  CamTool::ProvJSONtoRGL.new.read_log_file(target).validate
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'

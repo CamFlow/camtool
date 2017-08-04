@@ -51,6 +51,12 @@ module CamTool
       str += (@dg.num_edges.to_f/@dg.num_vertices).to_s() + " edges/vertices ratio.\n"
     end
 
+    def validate
+      abort 'Graph is not directed!' unless @dg.directed?
+      abort 'Graph is not acyclic!' unless @dg.acyclic?
+      puts 'Basic graph strusture test passed.'
+    end
+
     def svg
       @dg.write_to_graphic_file('svg')
     end
