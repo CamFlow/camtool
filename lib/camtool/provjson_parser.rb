@@ -53,6 +53,7 @@ module CamTool
       begin
         json = JSON.parse(string)
       rescue JSON::ParserError => ex
+        puts "Length: #{string.length}\n"
         abort "Error #{ex.class}, message: #{ex.message}"
       end
 
