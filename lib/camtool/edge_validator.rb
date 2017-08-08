@@ -18,7 +18,6 @@ module CamTool
     def is_entity? id
       bytes = Base64.decode64(id).bytes.to_a
       type = bytes[7] & 0xF0
-      puts "%x" % type
       return type == 0x20
     end
 
