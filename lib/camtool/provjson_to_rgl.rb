@@ -54,7 +54,6 @@ module CamTool
     def validate
       abort 'Graph is not directed!' unless @dg.directed?
       abort 'Graph is not acyclic!' unless @dg.acyclic?
-      puts 'Basic graph strusture test passed.'
     end
 
     def svg

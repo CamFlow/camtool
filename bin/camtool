@@ -19,7 +19,9 @@ elsif instruction == '--break'
   CamTool::LogBreaker.new.break_log_file target
 elsif instruction == '--validate'
   CamTool::ProvJSONtoRGL.new.read_log_file(target).validate
+  puts 'Graph structure verified...'
   CamTool::EdgeValidator.new.read_log_file(target)
+  puts 'Relations verified...'
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
