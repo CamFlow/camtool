@@ -55,5 +55,9 @@ module CamTool
       abort "wasAssociatedWith prov:activity is of wrong type:  #{v}." unless is_activity? v['prov:activity']
       abort "wasAssociatedWith prov:agent is of wrong type: #{v}." unless is_agent? v['prov:agent']
     end
+
+    def relation k, v
+      abort "relation should not be used"
+    end
   end
 end

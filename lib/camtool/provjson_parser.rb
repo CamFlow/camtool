@@ -37,6 +37,9 @@ module CamTool
     def wasAssociatedWith k, v
     end
 
+    def relation k, v
+    end
+
     def prefix k, v
     end
 
@@ -88,6 +91,10 @@ module CamTool
       json['wasInformedBy'].each do |k, v|
         self.wasInformedBy k, v
       end unless !json.key? 'wasInformedBy'
+
+      json['relation'].each do |k, v|
+        self.relation k, v
+      end unless !json.key? 'relation'
 
       json['wasAssociatedWith'].each do |k, v|
         self.wasAssociatedWith k, v
