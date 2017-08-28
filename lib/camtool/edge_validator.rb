@@ -3,6 +3,15 @@ module CamTool
     def initialize
     end
 
+    def print_relation_bytes id
+      id = id.gsub 'cf:', ''
+      bytes = Base64.decode64(id).bytes.to_a
+      type = bytes[7] & 0xF0
+      puts type.to_s(16)
+      type = bytes[8]
+      puts type.to_s(16)
+    end
+
     def is_relation? id
       id = id.gsub 'cf:', ''
       bytes = Base64.decode64(id).bytes.to_a
@@ -57,6 +66,7 @@ module CamTool
     end
 
     def relation k, v
+      print_relation_bytes k
       abort "relation should not be used"
     end
   end
