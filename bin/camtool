@@ -22,6 +22,34 @@ elsif instruction == '--validate'
   puts 'Graph structure verified...'
   CamTool::EdgeValidator.new.read_log_file(target)
   puts 'Relations verified...'
+elsif instruction == '--id'
+  id = target.gsub 'cf:', ''
+  bytes = Base64.decode64(id).bytes.to_a
+  s = ''
+  for i in (7).downto(0)
+      s += "%02X" % bytes[i]
+  end
+  puts s
+  n = 0
+  for i in 8..15
+      n += bytes[i] << (i-8)*8
+  end
+  puts n
+  n = 0
+  for i in 16..19
+      n += bytes[i] << (i-16)*8
+  end
+  puts n
+  n = 0
+  for i in 20..23
+      n += bytes[i] << (i-20)*8
+  end
+  puts n
+  n = 0
+  for i in 24..27
+      n += bytes[i] << (i-24)*8
+  end
+  puts n
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
