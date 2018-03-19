@@ -4,7 +4,7 @@ module CamTool
     end
 
     def entity k, v
-      puts v['prov:label']+"\t"+v['cf:jiffies'] unless v['prov:type'] != 'packet'
+      puts v['cf:jiffies']+"\t"+v['prov:label'] unless v['prov:type'] != 'packet'
     end
   end
 end
