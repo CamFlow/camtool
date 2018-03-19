@@ -50,6 +50,8 @@ elsif instruction == '--id'
       n += bytes[i] << (i-24)*8
   end
   puts n
+elsif instruction == '--packet'
+  CamTool::CheckPacket.new.read_log_file(target)
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
