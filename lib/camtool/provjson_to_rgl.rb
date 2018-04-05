@@ -6,29 +6,50 @@ require 'rgl/transitivity'
 module CamTool
   class ProvJSONtoRGL < ProvJSONParser
     attr_reader :dg
+    attr_reader :map
+    attr_reader :edges
 
     def initialize
       @dg = RGL::DirectedAdjacencyGraph.new # initialise the graph structure
+      @map = Hash.new
+      @edges = Hash.new
+    end
+
+    def entity k, v
+      @map[k] = v
+    end
+
+    def activity k, v
+      @map[k] = v
+    end
+
+    def agent k, v
+      @map[k] = v
     end
 
     def used k, v
       @dg.add_edge v['prov:activity'], v['prov:entity']
+      @edges[v['prov:activity']+v['prov:entity']] = v
     end
 
     def wasGeneratedBy k, v
       @dg.add_edge v['prov:entity'], v['prov:activity']
+      @edges[v['prov:entity']+v['prov:activity']] = v
     end
 
     def wasDerivedFrom k, v
       @dg.add_edge v['prov:generatedEntity'], v['prov:usedEntity']
+      @edges[v['prov:generatedEntity']+v['prov:usedEntity']] = v
     end
 
     def wasInformedBy k, v
       @dg.add_edge v['prov:informed'], v['prov:informant']
+      @edges[v['prov:informed']+v['prov:informant']] = v
     end
 
     def wasAssociatedWith k, v
       @dg.add_edge v['prov:activity'], v['prov:agent']
+      @edges[v['prov:activity']+v['prov:agent']] = v
       @dg.add_edge v['prov:agent'], v['prov:plan'] unless !v.key? 'prov:plan'
     end
 
@@ -66,6 +87,36 @@ module CamTool
 
     def png
       @dg.write_to_graphic_file('png')
+    end
+
+    def list
+      a = @dg.topsort_iterator.to_a
+      a.each do |v|
+        puts v + ' ' + @map[v]['prov:label']
+      end
+    end
+
+    def tree id
+      tree = @dg.bfs_search_tree_from(id)
+      puts tree
+    end
+
+    def neighbour id
+      dg.adjacent_vertices(id)
+    end
+
+    def sentences
+      a = @dg.topsort_iterator.to_a
+      a.each do |v|
+        str = map[v]['prov:type']
+        self.neighbour(v).each do |n|
+          str += ' '
+          str += edges[v+n]['prov:type']
+          str += ' '
+          str += map[n]['prov:type']
+        end
+        puts str
+      end
     end
   end
 end

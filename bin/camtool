@@ -26,6 +26,14 @@ elsif instruction == '--packet'
   CamTool::CheckPacket.new.read_log_file(target)
 elsif instruction == '--png'
   print CamTool::ProvJSONtoRGL.new.read_log_file(target).png
+elsif instruction == '--list'
+  CamTool::ProvJSONtoRGL.new.read_log_file(target).list
+elsif instruction == '--tree'
+  CamTool::ProvJSONtoRGL.new.read_log_file(target).tree(ARGV[2])
+elsif instruction == '--neighbour'
+  puts CamTool::ProvJSONtoRGL.new.read_log_file(target).neighbour(ARGV[2])
+elsif instruction == '--sentences'
+  CamTool::ProvJSONtoRGL.new.read_log_file(target).sentences
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
@@ -33,4 +41,7 @@ else
   puts '--png <path to log file>'
   puts '--packet <path to log file>'
   puts '--validate <path to log file>'
+  puts '--list <path to log file>'
+  puts '--tree <path to log file> <id>'
+  puts '--neighbour <path to log file> <id>'
 end
