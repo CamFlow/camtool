@@ -12,6 +12,7 @@ before_install:
 
 script:
   - ls
+  - rake install
   - camtool -v
 
 notifications:
