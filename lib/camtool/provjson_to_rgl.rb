@@ -95,28 +95,5 @@ module CamTool
         puts v + ' ' + @map[v]['prov:label']
       end
     end
-
-    def tree id
-      tree = @dg.bfs_search_tree_from(id)
-      puts tree
-    end
-
-    def neighbour id
-      dg.adjacent_vertices(id)
-    end
-
-    def sentences
-      a = @dg.topsort_iterator.to_a
-      a.each do |v|
-        str = map[v]['prov:type']
-        self.neighbour(v).each do |n|
-          str += ' '
-          str += edges[v+n]['prov:type']
-          str += ' '
-          str += map[n]['prov:type']
-        end
-        puts str
-      end
-    end
   end
 end
