@@ -27,6 +27,8 @@ elsif instruction == '--packet'
 elsif instruction == '--png'
   print CamTool::ProvJSONtoRGL.new.read_log_file(target).png
 elsif instruction == '--list'
+    types = ARGV[2]
+    CamTool::ProvJSONtoRGL.new.read_log_file(target).list(types)
 else
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
@@ -34,5 +36,5 @@ else
   puts '--png <path to log file>'
   puts '--packet <path to log file>'
   puts '--validate <path to log file>'
-  puts '--list <path to log file>'
+  puts '--list <path to log file> [optional comma-separated list of element type e.g. "path,argv"]'
 end

@@ -89,10 +89,14 @@ module CamTool
       @dg.write_to_graphic_file('png')
     end
 
-    def list
+    def list types
       a = @dg.topsort_iterator.to_a
+      a_type = types.split(',')
       a.each do |v|
-        puts v + ' ' + @map[v]['prov:label']
+        if a_type.include?(@map[v]['prov:type']) || types.nil?
+          puts v + ' ' + @map[v]['prov:label'] unless @map[v]['prov:label'].nil?
+          puts v + ' no label' unless !@map[v]['prov:label'].nil?
+        end
       end
     end
   end
