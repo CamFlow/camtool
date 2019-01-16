@@ -7,7 +7,7 @@ rvm:
   - truffleruby
 
 before_install:
-  - apt install -y graphviz
+  - sudo apt-get install -y graphviz
 
 script:
   - ls
