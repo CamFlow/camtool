@@ -13,3 +13,6 @@ before_install:
 script:
   - ls
   - camtool -v
+
+notifications:
+  slack: camflow:T3Umf9cAIwKnaxFEkjeZV7RM
