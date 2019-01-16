@@ -7,9 +7,10 @@ require 'rgl/transitivity'
 
 instruction = ARGV[0]
 target = ARGV[1]
-puts target
 
-if instruction == '--info'
+if instruction == '--version' || instruction == '-v'
+   CamTool.version
+elsif instruction == '--info'
   print CamTool::ProvJSONtoRGL.new.read_log_file(target).information
   CamTool::EdgeCounter.new.read_log_file(target).show
   CamTool::VertexCounter.new.read_log_file(target).show
@@ -30,6 +31,7 @@ elsif instruction == '--list'
     types = ARGV[2]
     CamTool::ProvJSONtoRGL.new.read_log_file(target).list(types)
 else
+  puts '--version'
   puts '--info <path to log file>'
   puts '--publish <path to log file>'
   puts '--break <path to log file>'
