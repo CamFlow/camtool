@@ -16,3 +16,10 @@ script:
 
 notifications:
   slack: camflow:T3Umf9cAIwKnaxFEkjeZV7RM
+
+deploy:
+  provider: rubygems
+  api_key: $RUBYGEMS_API_KEY
+  gem: camtool
+  on:
+    tags: true
