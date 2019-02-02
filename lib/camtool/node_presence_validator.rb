@@ -65,23 +65,26 @@ module CamTool
 
     def validate
       a = []
+      @sources = @sources.sort_by { |k, v| @edges[k]['cf:id'].to_i }.to_h
       @sources.each do |k, v|
         puts "Could not find source #{v}\nin\n#{@edges[k]}\n\n" unless @nodes.has_key? v
         a << v unless @nodes.has_key? v
       end
 
+      @destinations = @destinations.sort_by { |k, v| @edges[k]['cf:id'].to_i }.to_h
       @destinations.each do |k, v|
         puts "Could not find destination #{v}\nin\n#{@edges[k]}\n\n" unless @nodes.has_key? v
         a << v unless @nodes.has_key? v
       end
       if !a.empty?
         a = a.uniq
-        puts "#{a.length} missing elelements:"
+        puts "#{a.length} missing elelements:\n\n"
         a.each do |v|
           puts "Entity: "  unless !is_entity? v
           puts "Activity: "  unless !is_activity? v
           puts "Agent: "  unless !is_agent? v
           puts v
+          puts "\n"
         end
         abort 'Verification failed. Missing nodes.'
       end
