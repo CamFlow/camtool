@@ -20,11 +20,11 @@ elsif instruction == '--break'
   CamTool::LogBreaker.new.break_log_file target
 elsif instruction == '--validate'
   CamTool::ProvJSONtoRGL.new.read_log_file(target).validate
-  puts 'Graph structure verified...'
+  puts 'Graph structure verified.'
   CamTool::EdgeValidator.new.read_log_file(target)
-  puts 'Relations verified...'
+  puts 'Relations verified.'
   CamTool::NodePresenceValidator.new.read_log_file(target).validate
-  puts 'Nodes presence verified'
+  puts 'Nodes presence verified.'
 elsif instruction == '--packet'
   CamTool::CheckPacket.new.read_log_file(target)
 elsif instruction == '--png'
