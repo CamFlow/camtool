@@ -77,8 +77,9 @@ module CamTool
         a << v unless @nodes.has_key? v
       end
       if !a.empty?
+        puts "#{a.length} edge(s) with missing element."
         a = a.uniq
-        puts "#{a.length} missing elelements:\n\n"
+        puts "#{a.length} missing element(s).\n\n"
         a.each do |v|
           puts "Entity: "  unless !is_entity? v
           puts "Activity: "  unless !is_activity? v
