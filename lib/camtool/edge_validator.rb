@@ -29,7 +29,6 @@ module CamTool
     end
 
     def relation k, v
-      print_relation_bytes k
       puts v
       abort "relation should not be used"
     end

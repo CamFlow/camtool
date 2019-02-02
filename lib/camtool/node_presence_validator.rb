@@ -77,7 +77,12 @@ module CamTool
       if !a.empty?
         a = a.uniq
         puts "#{a.length} missing elelements:"
-        puts a
+        a.each do |v|
+          puts "Entity: "  unless !is_entity? v
+          puts "Activity: "  unless !is_activity? v
+          puts "Agent: "  unless !is_agent? v
+          puts v
+        end
         abort 'Verification failed. Missing nodes.'
       end
     end
