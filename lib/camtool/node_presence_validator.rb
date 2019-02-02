@@ -81,7 +81,7 @@ module CamTool
           puts v
           puts "\n"
         end
-        abort 'Verification failed. Missing nodes.'
+        abort 'Verification failed. Missing verticies.'
       end
     end
   end

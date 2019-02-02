@@ -24,7 +24,7 @@ elsif instruction == '--validate'
   CamTool::EdgeValidator.new.read_log_file(target)
   puts 'Relations verified.'
   CamTool::NodePresenceValidator.new.read_log_file(target).validate
-  puts 'Nodes presence verified.'
+  puts 'Verticies presence verified.'
 elsif instruction == '--packet'
   CamTool::CheckPacket.new.read_log_file(target)
 elsif instruction == '--png'
@@ -39,6 +39,7 @@ else
   puts '--version'
   puts '--info <path to log file>'
   puts '--validate <path to log file>'
+  puts '--search <path to log file> <vertex/edge ID>'
   puts '--publish <path to log file>'
   puts '--break <path to log file>'
   puts '--png <path to log file>'
