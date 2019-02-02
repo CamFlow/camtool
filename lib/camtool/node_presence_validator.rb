@@ -32,8 +32,8 @@ module CamTool
 
     def wasInformedBy k, v
       @edges[k] = v
-      @destinations[k] = v['prov:informed']
-      @sources[k] = v['prov:informant']
+      @destinations[k] = v['prov:informant']
+      @sources[k] = v['prov:informed']
     end
 
     def wasAssociatedWith k, v
