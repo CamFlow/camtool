@@ -61,13 +61,15 @@ module CamTool
       a = []
       @sources = @sources.sort_by { |k, v| @edges[k]['cf:id'].to_i }.to_h
       @sources.each do |k, v|
-        puts "Could not find source #{v}\nin\n#{@edges[k]}\n\n" unless @nodes.has_key? v
+        puts "Could not find source #{v}\nin\n#{@edges[k]}" unless @nodes.has_key? v
+        puts "destination:\n#{@destinations[k]}:#{@nodes[@destinations[k]]}\n\n" unless @nodes.has_key? v
         a << v unless @nodes.has_key? v
       end
 
       @destinations = @destinations.sort_by { |k, v| @edges[k]['cf:id'].to_i }.to_h
       @destinations.each do |k, v|
-        puts "Could not find destination #{v}\nin\n#{@edges[k]}\n\n" unless @nodes.has_key? v
+        puts "Could not find destination #{v}\nin\n#{@edges[k]}" unless @nodes.has_key? v
+        puts "source:\n#{@sources[k]}:#{@nodes[@sources[k]]}\n\n" unless @nodes.has_key? v
         a << v unless @nodes.has_key? v
       end
       if !a.empty?
