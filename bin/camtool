@@ -23,6 +23,8 @@ elsif instruction == '--validate'
   puts 'Graph structure verified...'
   CamTool::EdgeValidator.new.read_log_file(target)
   puts 'Relations verified...'
+  CamTool::NodePresenceValidator.new.read_log_file(target).validate
+  puts 'Nodes presence verified'
 elsif instruction == '--packet'
   CamTool::CheckPacket.new.read_log_file(target)
 elsif instruction == '--png'

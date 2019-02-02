@@ -73,7 +73,7 @@ module CamTool
       end unless !json.key? 'activity'
 
       json['agent'].each do |k, v|
-        self.activity k, v
+        self.agent k, v
       end unless !json.key? 'agent'
 
       json['used'].each do |k, v|
