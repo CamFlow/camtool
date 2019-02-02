@@ -42,12 +42,6 @@ module CamTool
       @sources[k] = v['prov:activity']
     end
 
-    def relation k, v
-    end
-
-    def prefix k, v
-    end
-
     def entity k, v
       abort "entity is of wrong type:  #{v}." unless is_entity? k
       @nodes[k]=v
