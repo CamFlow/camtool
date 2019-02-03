@@ -93,6 +93,7 @@ module CamTool
       a = @dg.topsort_iterator.to_a
       a_type = types.split(',')
       a.each do |v|
+        next unless !@map[v].nil?
         if a_type.include?(@map[v]['prov:type']) || types.nil?
           puts v + ' ' + @map[v]['prov:label'] unless @map[v]['prov:label'].nil?
           puts v + ' no label' unless !@map[v]['prov:label'].nil?
