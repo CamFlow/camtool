@@ -1,14 +1,13 @@
-# camflow-ruby
+# Camtool
+
+## Install
 
 ```
-sudo dnf install ruby ruby-devel redhat-rpm-config graphviz
+sudo dnf install ruby graphviz
+gem install camtool
 ```
 
-```
-gem install json rgl mqtt rake bundler
-```
-
-## install
+## Build from source
 
 ```
 git clone https://github.com/tfjmp/camtool
