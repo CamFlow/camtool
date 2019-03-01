@@ -6,7 +6,7 @@ require "camtool/version"
 Gem::Specification.new do |spec|
   spec.name          = "camtool"
   spec.version       = CamTool::VERSION
-  spec.authors       = ["Thomas Pasquier", 'Xuehuan "Michael" Han']
+  spec.authors       = ["Thomas Pasquier", 'Xueyuan "Michael" Han']
   spec.email         = ["tfjmp@seas.harvard.edu"]
 
   spec.summary       = %q{Tool to manipulate CamFlow log files.}
