@@ -2,8 +2,8 @@ language: ruby
 cache: bundler
 dist: trusty
 rvm:
-  - rbx-3
   - 2.5
+  - 2.6
   - truffleruby
 
 before_install:
